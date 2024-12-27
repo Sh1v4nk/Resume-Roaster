@@ -3,12 +3,19 @@ import cors from "cors";
 import multer from "multer";
 import pdf from "pdf-parse";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { generateRoastPrompt, SAFETY_SETTINGS } from "@/configs";
+import { generateRoastPrompt, SAFETY_SETTINGS } from "./configs";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT: number = parseInt(process.env.PORT || "3000", 10);
 
-app.use(cors());
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5173"
+      : process.env.CLIENT_URL,
+};
+
+app.use(cors(corsOptions));
 
 // Configure Multer for file uploads
 const upload = multer({
@@ -80,5 +87,5 @@ app.post(
 );
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
