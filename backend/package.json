@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bun install && tsc",
-    "start": "bun -r dist/App.js",
+    "start": "bun dist/App.js",
     "dev": "bun --watch ./src/App.ts"
   },
   "dependencies": {
