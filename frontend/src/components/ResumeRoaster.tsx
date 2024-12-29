@@ -1,37 +1,50 @@
-import { Upload, Loader2, X } from "lucide-react";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { Upload, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 
-// Reusable RoastFormatter Component
+// RoastFormatter Component
 function RoastFormatter({ roast }: { roast: string }) {
-  const formattedRoast = roast
-    .split("\n\n") // Split by paragraphs
-    .map((paragraph, index) => {
-      const boldedText = paragraph.replace(
-        /(\b(?:contact info|objective statement|COURSEWORK \/ SKILLS|projects|TECHNICAL SKILLS|education|conclusion)\b)/gi,
-        (match) => `<strong>${match}</strong>`
-      );
+  const formattedRoast = roast.split("\n\n").map((paragraph, index) => {
+    const boldedText = paragraph.replace(
+      /(\*\*.*?\*\*)/g,
+      (match) =>
+        `<strong class="text-yellow-400">${match.replace(/\*\*/g, "")}</strong>`
+    );
 
-      const italicizedText = boldedText.replace(
-        /(\*\*.*?\*\*)/g, // Handle **text** for emphasis
-        (match) => `<em>${match.replace(/\*\*/g, "")}</em>`
-      );
+    const italicizedText = boldedText.replace(
+      /(\*.*?\*)/g,
+      (match) => `<em class="text-neutral-300">${match.replace(/\*/g, "")}</em>`
+    );
 
-      return (
-        <p
-          key={index}
-          className="text-sm leading-7 font-medium text-neutral-300 mb-4"
-          dangerouslySetInnerHTML={{ __html: italicizedText }}
-        ></p>
-      );
-    });
+    return (
+      <p
+        key={index}
+        className="text-sm leading-relaxed text-neutral-300 mb-4"
+        dangerouslySetInnerHTML={{ __html: italicizedText }}
+      ></p>
+    );
+  });
 
   return (
-    <div className="bg-neutral-800 p-6 rounded-lg text-white space-y-4 shadow-lg">
-      <h3 className="text-xl font-bold text-neutral-100">Your Roast:</h3>
-      {formattedRoast}
-    </div>
+    <Card className="bg-neutral-800 text-white p-6 rounded-lg shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-xl font-bold text-neutral-100 mb-4">
+          Your Roast
+        </CardTitle>
+        <CardDescription className="text-neutral-400">
+          A brutally honest critique of your resume, served fresh.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">{formattedRoast}</CardContent>
+    </Card>
   );
 }
 
@@ -44,8 +57,8 @@ export default function ResumeRoaster() {
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
-    setRoast(null); // Clear previous roast if any
-    setError(null); // Clear previous error if any
+    setRoast(null);
+    setError(null);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -94,7 +107,7 @@ export default function ResumeRoaster() {
   return (
     <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl space-y-6">
-        {/* Conditionally Render Upload Field */}
+        {/* Upload Section */}
         {!roast && (
           <div
             {...getRootProps()}
@@ -116,7 +129,7 @@ export default function ResumeRoaster() {
           </div>
         )}
 
-        {/* Conditionally Render Button */}
+        {/* Analyze Button */}
         {!roast && (
           <Button
             variant="default"
@@ -135,23 +148,23 @@ export default function ResumeRoaster() {
           </Button>
         )}
 
-        {/* Roast Text Section */}
+        {/* Display Roast */}
         {roast && (
-          <>
+          <div className="w-full max-w-2xl">
             <RoastFormatter roast={roast} />
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <Button
                 variant="outline"
-                className="mt-4 p-2 rounded-full"
+                className="p-2 rounded-full"
                 onClick={resetHandler}
               >
                 <X className="h-5 w-5 text-white" />
               </Button>
             </div>
-          </>
+          </div>
         )}
 
-        {/* Error Section */}
+        {/* Error Message */}
         {error && (
           <div className="mt-4 bg-red-800 p-4 rounded-lg text-white">
             <h3 className="text-lg font-bold mb-2">Error:</h3>
