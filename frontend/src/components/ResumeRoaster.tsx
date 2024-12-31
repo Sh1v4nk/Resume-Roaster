@@ -2,53 +2,13 @@ import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
+import { RoastFormatter } from "@/components/RoastFormatter";
 
-// RoastFormatter Component
-function RoastFormatter({ roast }: { roast: string }) {
-  const formattedRoast = roast.split("\n\n").map((paragraph, index) => {
-    const boldedText = paragraph.replace(
-      /(\*\*.*?\*\*)/g,
-      (match) =>
-        `<strong class="text-yellow-400">${match.replace(/\*\*/g, "")}</strong>`
-    );
+const API_URL: string =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000/roast-resume" // Local URL in development
+    : import.meta.env.VITE_SERVER_URL || "/roast-resume";
 
-    const italicizedText = boldedText.replace(
-      /(\*.*?\*)/g,
-      (match) => `<em class="text-neutral-300">${match.replace(/\*/g, "")}</em>`
-    );
-
-    return (
-      <p
-        key={index}
-        className="text-sm leading-relaxed text-neutral-300 mb-4"
-        dangerouslySetInnerHTML={{ __html: italicizedText }}
-      ></p>
-    );
-  });
-
-  return (
-    <Card className="bg-neutral-800 text-white p-6 rounded-lg shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-xl font-bold text-neutral-100 mb-4">
-          Your Roast
-        </CardTitle>
-        <CardDescription className="text-neutral-400">
-          A brutally honest critique of your resume, served fresh.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">{formattedRoast}</CardContent>
-    </Card>
-  );
-}
-
-// Main ResumeRoaster Component
 export default function ResumeRoaster() {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +39,7 @@ export default function ResumeRoaster() {
     formData.append("resume", file);
 
     try {
-      const response = await fetch("http://localhost:3000/roast-resume", {
+      const response = await fetch(API_URL, {
         method: "POST",
         body: formData,
       });
@@ -140,7 +100,7 @@ export default function ResumeRoaster() {
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-7 w-7 animate-spin text-black" />
-                Generating Roast
+                Generating Roast...
               </>
             ) : (
               "Generate Roast"

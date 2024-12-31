@@ -1,5 +1,4 @@
 import {
-  GoogleGenerativeAI,
   HarmBlockThreshold,
   HarmCategory,
 } from "@google/generative-ai";
