@@ -21,7 +21,7 @@ export default function ResumeRoaster() {
     setError(null);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       "application/pdf": [".pdf"],
