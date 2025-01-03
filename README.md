@@ -78,7 +78,6 @@ Bun will automatically load these environment variables during runtime.
 
 - [Frontend .env.example](https://github.com/Sh1v4nk/Resume-Roaster/blob/main/frontend/.env.example)
 
-
 ---
 
 ## Contributing
@@ -90,3 +89,9 @@ Contributions are welcome! Please follow these steps:
 3. Commit your Changes (`git commit -m 'Add some FeatureName'`)
 4. Push to the Branch (`git push origin feature/FeatureName`)
 5. Open a Pull Request
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Sh1v4nk/Resume-Roaster/blob/main/LICENSE) file for details.
