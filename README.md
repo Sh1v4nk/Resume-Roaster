@@ -10,6 +10,22 @@ Resume-Roaster is a web application that provides a humorous and brutally honest
 
 </div>
 
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+    - [Clone the repository](#1-clone-the-repository)
+    - [Install dependencies](#2-install-dependencies)
+      - [Backend](#backend-1)
+      - [Frontend](#frontend-1)
+    - [Set up environment variables](#3-set-up-environment-variables)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features
 
 - **Resume Upload**: Users can upload their resume in PDF format.
