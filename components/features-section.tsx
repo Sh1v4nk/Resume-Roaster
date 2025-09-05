@@ -1,7 +1,15 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, Target, BarChart3, Download, CheckCircle, AlertTriangle, XCircle } from "lucide-react";
+import {
+    Upload,
+    Target,
+    BarChart3,
+    Download,
+    CheckCircle,
+    AlertTriangle,
+    XCircle,
+} from "lucide-react";
 import { easeOut, motion } from "motion/react";
 
 export function FeaturesSection() {
@@ -96,27 +104,28 @@ export function FeaturesSection() {
     };
 
     return (
-        <section className="py-12 sm:py-20 lg:py-32 bg-muted/30">
+        <section className="bg-muted/30 py-12 sm:py-20 lg:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    className="text-center mb-12 lg:mb-16"
+                    className="mb-12 text-center lg:mb-16"
                 >
                     <motion.h2
                         variants={itemVariants}
-                        className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4 text-balance"
+                        className="text-foreground mb-4 text-2xl font-bold tracking-tight text-balance sm:text-3xl lg:text-4xl"
                     >
                         Powerful Features for Resume Success
                     </motion.h2>
                     <motion.p
                         variants={itemVariants}
-                        className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed"
+                        className="text-muted-foreground mx-auto max-w-3xl text-lg leading-relaxed text-pretty sm:text-xl"
                     >
-                        Our AI-powered platform provides comprehensive resume analysis with actionable insights to help you stand out in
-                        today&apos;s competitive job market.
+                        Our AI-powered platform provides comprehensive resume analysis with
+                        actionable insights to help you stand out in today&apos;s competitive job
+                        market.
                     </motion.p>
                 </motion.div>
 
@@ -125,7 +134,7 @@ export function FeaturesSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12 lg:mb-16"
+                    className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mb-16 lg:grid-cols-4"
                 >
                     {features.map((feature, index) => (
                         <motion.div
@@ -133,26 +142,36 @@ export function FeaturesSection() {
                             variants={cardVariants}
                             whileHover={{
                                 y: -8,
-                                transition: { type: "spring", stiffness: 400, damping: 17 },
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                },
                             }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                            <Card className="relative h-full overflow-hidden border-0 shadow-lg transition-all duration-300 hover:shadow-xl">
                                 <CardHeader className="pb-4">
                                     <motion.div
-                                        className={`inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-background shadow-sm ${feature.color}`}
+                                        className={`bg-background inline-flex h-10 w-10 items-center justify-center rounded-xl shadow-sm sm:h-12 sm:w-12 ${feature.color}`}
                                         whileHover={{
                                             scale: 1.1,
                                             rotate: 5,
-                                            transition: { type: "spring", stiffness: 400, damping: 17 },
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 17,
+                                            },
                                         }}
                                     >
                                         <feature.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                                     </motion.div>
-                                    <CardTitle className="text-base sm:text-lg font-semibold">{feature.title}</CardTitle>
+                                    <CardTitle className="text-base font-semibold sm:text-lg">
+                                        {feature.title}
+                                    </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <CardDescription className="text-sm sm:text-base leading-relaxed">
+                                    <CardDescription className="text-sm leading-relaxed sm:text-base">
                                         {feature.description}
                                     </CardDescription>
                                 </CardContent>
@@ -166,14 +185,14 @@ export function FeaturesSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg border"
+                    className="bg-card rounded-2xl border p-6 shadow-lg sm:p-8"
                 >
                     <motion.h3
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8"
+                        className="mb-6 text-center text-xl font-bold sm:mb-8 sm:text-2xl"
                     >
                         Smart Feedback Categories
                     </motion.h3>
@@ -182,7 +201,7 @@ export function FeaturesSection() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6"
+                        className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3"
                     >
                         {feedbackTypes.map((type, index) => (
                             <motion.div
@@ -190,20 +209,34 @@ export function FeaturesSection() {
                                 variants={cardVariants}
                                 whileHover={{
                                     scale: 1.02,
-                                    transition: { type: "spring", stiffness: 400, damping: 17 },
+                                    transition: {
+                                        type: "spring",
+                                        stiffness: 400,
+                                        damping: 17,
+                                    },
                                 }}
-                                className={`${type.bgColor} rounded-xl p-4 sm:p-6 border cursor-pointer`}
+                                className={`${type.bgColor} cursor-pointer rounded-xl border p-4 sm:p-6`}
                             >
-                                <div className="flex items-center space-x-3 mb-3">
+                                <div className="mb-3 flex items-center space-x-3">
                                     <motion.div
                                         whileHover={{ scale: 1.2, rotate: 10 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 17,
+                                        }}
                                     >
-                                        <type.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${type.color}`} />
+                                        <type.icon
+                                            className={`h-5 w-5 sm:h-6 sm:w-6 ${type.color}`}
+                                        />
                                     </motion.div>
-                                    <h4 className="font-semibold text-foreground text-sm sm:text-base">{type.label}</h4>
+                                    <h4 className="text-foreground text-sm font-semibold sm:text-base">
+                                        {type.label}
+                                    </h4>
                                 </div>
-                                <p className="text-xs sm:text-sm text-muted-foreground">{type.description}</p>
+                                <p className="text-muted-foreground text-xs sm:text-sm">
+                                    {type.description}
+                                </p>
                             </motion.div>
                         ))}
                     </motion.div>

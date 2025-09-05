@@ -10,7 +10,9 @@ export function ModeToggle() {
 
     React.useEffect(() => {
         const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
         const initialTheme = savedTheme || systemTheme;
 
         setTheme(initialTheme);
@@ -28,7 +30,10 @@ export function ModeToggle() {
         <Button variant="ghost" size="icon" onClick={toggleTheme} className="relative">
             <motion.div
                 initial={false}
-                animate={{ scale: theme === "dark" ? 1 : 0, rotate: theme === "dark" ? 0 : 180 }}
+                animate={{
+                    scale: theme === "dark" ? 1 : 0,
+                    rotate: theme === "dark" ? 0 : 180,
+                }}
                 transition={{ duration: 0.2 }}
                 className="absolute"
             >
@@ -36,7 +41,10 @@ export function ModeToggle() {
             </motion.div>
             <motion.div
                 initial={false}
-                animate={{ scale: theme === "light" ? 1 : 0, rotate: theme === "light" ? 0 : -180 }}
+                animate={{
+                    scale: theme === "light" ? 1 : 0,
+                    rotate: theme === "light" ? 0 : -180,
+                }}
                 transition={{ duration: 0.2 }}
             >
                 <Sun className="h-[1.2rem] w-[1.2rem]" />

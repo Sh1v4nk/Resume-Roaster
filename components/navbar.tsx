@@ -39,7 +39,7 @@ export function Navbar() {
             variants={navVariants}
             initial="hidden"
             animate="visible"
-            className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50"
+            className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b backdrop-blur"
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
@@ -50,13 +50,13 @@ export function Navbar() {
                     >
                         <Link href="/" className="flex items-center space-x-2">
                             <motion.div
-                                className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold"
+                                className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg font-bold"
                                 whileHover={{ rotate: 360 }}
                                 transition={{ duration: 0.6 }}
                             >
                                 R
                             </motion.div>
-                            <span className="font-bold text-lg sm:text-xl">Resume Roaster</span>
+                            <span className="text-lg font-bold sm:text-xl">Resume Roaster</span>
                         </Link>
                     </motion.div>
 
@@ -66,7 +66,7 @@ export function Navbar() {
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <Link
                                     href="/"
-                                    className="text-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                                    className="text-foreground hover:text-primary rounded-md px-3 py-2 text-sm font-medium transition-colors"
                                 >
                                     Home
                                 </Link>
@@ -74,7 +74,7 @@ export function Navbar() {
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <Link
                                     href="/roast"
-                                    className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                                    className="text-muted-foreground hover:text-primary rounded-md px-3 py-2 text-sm font-medium transition-colors"
                                 >
                                     Roast My Resume
                                 </Link>
@@ -83,7 +83,7 @@ export function Navbar() {
                     </div>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <div className="hidden items-center space-x-4 md:flex">
                         <ModeToggle />
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Button asChild>
@@ -93,15 +93,22 @@ export function Navbar() {
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 md:hidden">
                         <ModeToggle />
                         <motion.button
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                            className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-md p-2 transition-colors"
                         >
-                            <motion.div animate={{ rotate: isMobileMenuOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                            <motion.div
+                                animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                {isMobileMenuOpen ? (
+                                    <X className="h-6 w-6" />
+                                ) : (
+                                    <Menu className="h-6 w-6" />
+                                )}
                             </motion.div>
                         </motion.button>
                     </div>
@@ -112,24 +119,24 @@ export function Navbar() {
                     variants={mobileMenuVariants}
                     initial="hidden"
                     animate={isMobileMenuOpen ? "visible" : "hidden"}
-                    className="md:hidden overflow-hidden"
+                    className="overflow-hidden md:hidden"
                 >
-                    <div className="px-2 pt-2 pb-3 space-y-1 border-t">
+                    <div className="space-y-1 border-t px-2 pt-2 pb-3">
                         <Link
                             href="/"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-muted transition-colors"
+                            className="text-foreground hover:text-primary hover:bg-muted block rounded-md px-3 py-2 text-base font-medium transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Home
                         </Link>
                         <Link
                             href="/roast"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-muted-foreground hover:text-primary hover:bg-muted transition-colors"
+                            className="text-muted-foreground hover:text-primary hover:bg-muted block rounded-md px-3 py-2 text-base font-medium transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Roast My Resume
                         </Link>
-                        <div className="pt-4 flex flex-col space-y-2">
+                        <div className="flex flex-col space-y-2 pt-4">
                             <Button asChild className="w-full">
                                 <Link href="/roast" onClick={() => setIsMobileMenuOpen(false)}>
                                     Try It Now

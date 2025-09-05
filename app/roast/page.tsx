@@ -143,12 +143,12 @@ export default function RoastPage() {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="mx-auto max-w-4xl">
+                <div className="mb-8 text-center">
+                    <h1 className="from-primary to-accent mb-4 bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent">
                         Roast Your Resume
                     </h1>
-                    <p className="text-xl text-muted-foreground text-pretty">
+                    <p className="text-muted-foreground text-xl text-pretty">
                         Upload your resume and get instant AI-powered feedback and analysis
                     </p>
                 </div>
@@ -156,14 +156,16 @@ export default function RoastPage() {
                 {!results ? (
                     <div className="space-y-8">
                         {/* Step 1: Upload Resume */}
-                        <Card className="shadow-lg border-0">
+                        <Card className="border-0 shadow-lg">
                             <CardHeader>
                                 <div className="flex items-center space-x-3">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
+                                    <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold">
                                         1
                                     </div>
                                     <div>
-                                        <CardTitle className="text-xl">Upload Your Resume</CardTitle>
+                                        <CardTitle className="text-xl">
+                                            Upload Your Resume
+                                        </CardTitle>
                                         <CardDescription className="text-base">
                                             Upload your resume in PDF or DOCX format to get started
                                         </CardDescription>
@@ -174,15 +176,19 @@ export default function RoastPage() {
                                 <FileUpload onFileUpload={handleFileUpload} />
 
                                 {uploadedFile && (
-                                    <div className="mt-6 p-4 bg-muted/50 rounded-lg border">
+                                    <div className="bg-muted/50 mt-6 rounded-lg border p-4">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center space-x-3">
                                                 <CheckCircle className="h-5 w-5 text-green-600" />
                                                 <div>
-                                                    <p className="font-medium">{uploadedFile.name}</p>
-                                                    <p className="text-sm text-muted-foreground">
+                                                    <p className="font-medium">
+                                                        {uploadedFile.name}
+                                                    </p>
+                                                    <p className="text-muted-foreground text-sm">
                                                         {formatFileSize(uploadedFile.size)} •{" "}
-                                                        {uploadedFile.type.includes("pdf") ? "PDF" : "DOCX"}
+                                                        {uploadedFile.type.includes("pdf")
+                                                            ? "PDF"
+                                                            : "DOCX"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -202,14 +208,16 @@ export default function RoastPage() {
 
                         {/* Step 2: Analyze */}
                         {uploadedFile && (
-                            <Card className="shadow-lg border-0">
+                            <Card className="border-0 shadow-lg">
                                 <CardHeader>
                                     <div className="flex items-center space-x-3">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-accent-foreground text-sm font-bold">
+                                        <div className="bg-accent text-accent-foreground flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold">
                                             2
                                         </div>
                                         <div>
-                                            <CardTitle className="text-xl">Analyze Resume</CardTitle>
+                                            <CardTitle className="text-xl">
+                                                Analyze Resume
+                                            </CardTitle>
                                             <CardDescription className="text-base">
                                                 Get AI-powered insights and feedback on your resume
                                             </CardDescription>
@@ -221,7 +229,7 @@ export default function RoastPage() {
                                         <Button
                                             onClick={handleAnalyze}
                                             size="lg"
-                                            className="w-full sm:w-auto text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                            className="w-full rounded-xl px-8 py-6 text-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl sm:w-auto"
                                         >
                                             <Zap className="mr-2 h-5 w-5" />
                                             Analyze Resume
@@ -229,17 +237,29 @@ export default function RoastPage() {
                                     ) : (
                                         <div className="space-y-4">
                                             <div className="flex items-center space-x-3">
-                                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
-                                                <span className="text-lg font-medium">Analyzing your resume...</span>
+                                                <div className="border-primary h-6 w-6 animate-spin rounded-full border-b-2"></div>
+                                                <span className="text-lg font-medium">
+                                                    Analyzing your resume...
+                                                </span>
                                             </div>
                                             <Progress value={analysisProgress} className="w-full" />
-                                            <p className="text-sm text-muted-foreground">
-                                                {analysisProgress < 20 && "Reading document structure..."}
-                                                {analysisProgress >= 20 && analysisProgress < 40 && "Extracting text content..."}
-                                                {analysisProgress >= 40 && analysisProgress < 60 && "Analyzing resume sections..."}
-                                                {analysisProgress >= 60 && analysisProgress < 80 && "Evaluating content quality..."}
-                                                {analysisProgress >= 80 && analysisProgress < 95 && "Checking keyword optimization..."}
-                                                {analysisProgress >= 95 && "Generating personalized feedback..."}
+                                            <p className="text-muted-foreground text-sm">
+                                                {analysisProgress < 20 &&
+                                                    "Reading document structure..."}
+                                                {analysisProgress >= 20 &&
+                                                    analysisProgress < 40 &&
+                                                    "Extracting text content..."}
+                                                {analysisProgress >= 40 &&
+                                                    analysisProgress < 60 &&
+                                                    "Analyzing resume sections..."}
+                                                {analysisProgress >= 60 &&
+                                                    analysisProgress < 80 &&
+                                                    "Evaluating content quality..."}
+                                                {analysisProgress >= 80 &&
+                                                    analysisProgress < 95 &&
+                                                    "Checking keyword optimization..."}
+                                                {analysisProgress >= 95 &&
+                                                    "Generating personalized feedback..."}
                                             </p>
                                         </div>
                                     )}

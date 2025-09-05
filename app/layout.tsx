@@ -13,7 +13,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
     title: "Resume Roast - AI-Powered Resume Analysis",
-    description: "Get instant AI-powered feedback on your resume with detailed analysis, scoring, and improvement suggestions.",
+    description:
+        "Get instant AI-powered feedback on your resume with detailed analysis, scoring, and improvement suggestions.",
 };
 
 export default function RootLayout({
@@ -26,7 +27,13 @@ export default function RootLayout({
             <body className={`${poppins.variable} font-sans antialiased`}>
                 <Navbar />
                 {children}
-                <Toaster position="top-right" richColors closeButton expand={false} visibleToasts={3} />
+                <Toaster
+                    position="top-right"
+                    richColors
+                    closeButton
+                    expand={false}
+                    visibleToasts={3}
+                />
             </body>
         </html>
     );

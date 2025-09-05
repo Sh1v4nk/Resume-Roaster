@@ -160,12 +160,20 @@ export async function POST(request: NextRequest) {
         ];
 
         if (!allowedTypes.includes(file.type)) {
-            return NextResponse.json({ error: "Invalid file type. Please upload PDF or DOCX files only." }, { status: 400 });
+            return NextResponse.json(
+                {
+                    error: "Invalid file type. Please upload PDF or DOCX files only.",
+                },
+                { status: 400 },
+            );
         }
 
         // Validate file size (10MB limit)
         if (file.size > 10 * 1024 * 1024) {
-            return NextResponse.json({ error: "File size must be less than 10MB" }, { status: 400 });
+            return NextResponse.json(
+                { error: "File size must be less than 10MB" },
+                { status: 400 },
+            );
         }
 
         // Extract text from file
@@ -173,8 +181,10 @@ export async function POST(request: NextRequest) {
 
         if (!resumeContent || resumeContent.trim().length === 0) {
             return NextResponse.json(
-                { error: "Unable to extract text from resume. Please ensure the file contains readable text." },
-                { status: 400 }
+                {
+                    error: "Unable to extract text from resume. Please ensure the file contains readable text.",
+                },
+                { status: 400 },
             );
         }
 
@@ -187,6 +197,9 @@ export async function POST(request: NextRequest) {
         });
     } catch (error) {
         console.error("Resume analysis error:", error);
-        return NextResponse.json({ error: "Failed to analyze resume. Please try again." }, { status: 500 });
+        return NextResponse.json(
+            { error: "Failed to analyze resume. Please try again." },
+            { status: 500 },
+        );
     }
 }

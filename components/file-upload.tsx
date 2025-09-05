@@ -35,7 +35,7 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                 onFileUpload(acceptedFiles[0]);
             }
         },
-        [onFileUpload]
+        [onFileUpload],
     );
 
     const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
@@ -59,19 +59,24 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                 <Card
                     {...getRootProps()}
                     className={cn(
-                        "border-2 border-dashed cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-lg",
-                        isDragActive && !isDragReject && "border-primary bg-primary/5 shadow-lg scale-[1.02]",
+                        "hover:border-primary/50 cursor-pointer border-2 border-dashed transition-all duration-300 hover:shadow-lg",
+                        isDragActive &&
+                            !isDragReject &&
+                            "border-primary bg-primary/5 scale-[1.02] shadow-lg",
                         isDragReject && "border-destructive bg-destructive/5",
-                        error && "border-destructive"
+                        error && "border-destructive",
                     )}
                 >
-                    <div className="p-6 sm:p-8 text-center">
+                    <div className="p-6 text-center sm:p-8">
                         <input {...getInputProps()} />
 
                         <motion.div
-                            className="mx-auto mb-4 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-muted"
+                            className="bg-muted mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full sm:h-16 sm:w-16"
                             animate={isDragActive ? { scale: [1, 1.1, 1] } : {}}
-                            transition={{ duration: 0.5, repeat: isDragActive ? Number.POSITIVE_INFINITY : 0 }}
+                            transition={{
+                                duration: 0.5,
+                                repeat: isDragActive ? Number.POSITIVE_INFINITY : 0,
+                            }}
                         >
                             <AnimatePresence mode="wait">
                                 {isDragReject || error ? (
@@ -80,9 +85,13 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                                         initial={{ scale: 0, rotate: -180 }}
                                         animate={{ scale: 1, rotate: 0 }}
                                         exit={{ scale: 0, rotate: 180 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 17,
+                                        }}
                                     >
-                                        <AlertCircle className="h-6 w-6 sm:h-8 sm:w-8 text-destructive" />
+                                        <AlertCircle className="text-destructive h-6 w-6 sm:h-8 sm:w-8" />
                                     </motion.div>
                                 ) : (
                                     <motion.div
@@ -90,9 +99,13 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                                         initial={{ scale: 0, rotate: -180 }}
                                         animate={{ scale: 1, rotate: 0 }}
                                         exit={{ scale: 0, rotate: 180 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 400,
+                                            damping: 17,
+                                        }}
                                     >
-                                        <Upload className="h-6 w-6 sm:h-8 sm:w-8 text-muted-foreground" />
+                                        <Upload className="text-muted-foreground h-6 w-6 sm:h-8 sm:w-8" />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -104,11 +117,15 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
                         >
-                            <h3 className="text-base sm:text-lg font-semibold">
-                                {isDragActive ? (isDragReject ? "Invalid file type" : "Drop your resume here") : "Upload your resume"}
+                            <h3 className="text-base font-semibold sm:text-lg">
+                                {isDragActive
+                                    ? isDragReject
+                                        ? "Invalid file type"
+                                        : "Drop your resume here"
+                                    : "Upload your resume"}
                             </h3>
 
-                            <p className="text-sm sm:text-base text-muted-foreground">
+                            <p className="text-muted-foreground text-sm sm:text-base">
                                 {isDragActive
                                     ? isDragReject
                                         ? "Please upload a PDF or DOCX file"
@@ -118,7 +135,7 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                         </motion.div>
 
                         <motion.div
-                            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+                            className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
@@ -129,7 +146,9 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                                     Choose File
                                 </Button>
                             </motion.div>
-                            <div className="text-xs sm:text-sm text-muted-foreground">Supports PDF and DOCX • Max 10MB</div>
+                            <div className="text-muted-foreground text-xs sm:text-sm">
+                                Supports PDF and DOCX • Max 10MB
+                            </div>
                         </motion.div>
 
                         <AnimatePresence>
@@ -138,8 +157,12 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                                     initial={{ opacity: 0, y: 10, scale: 0.9 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                    className="mt-4 flex items-center justify-center space-x-2 text-sm text-destructive"
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 400,
+                                        damping: 17,
+                                    }}
+                                    className="text-destructive mt-4 flex items-center justify-center space-x-2 text-sm"
                                 >
                                     <AlertCircle className="h-4 w-4" />
                                     <span>{error}</span>

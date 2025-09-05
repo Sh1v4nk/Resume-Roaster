@@ -30,15 +30,14 @@ export function HeroSection() {
     };
 
     const cardVariants = {
-        hidden: { opacity: 0, scale: 0.8, rotateY: -15 },
+        hidden: { opacity: 0, scale: 0.8 },
         visible: {
             opacity: 1,
             scale: 1,
-            rotateY: 0,
             transition: {
-                duration: 0.8,
-                ease: easeOut,
-                delay: 0.4,
+                duration: 0.5,
+                ease: easeInOut,
+                delay: 0.2,
             },
         },
     };
@@ -55,148 +54,191 @@ export function HeroSection() {
     };
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/10 py-12 sm:py-20 lg:py-32">
+        <section className="from-primary/10 via-background to-accent/10 relative overflow-hidden bg-gradient-to-br py-12 sm:py-20 lg:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 items-center"
+                    className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12"
                 >
                     {/* Left side - Content */}
                     <div className="flex flex-col justify-center space-y-6 lg:space-y-8">
                         <motion.div variants={itemVariants} className="space-y-4 lg:space-y-6">
                             <motion.h1
                                 variants={itemVariants}
-                                className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl text-balance"
+                                className="text-foreground text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl xl:text-6xl"
                             >
                                 Roast Your Resume Like a{" "}
-                                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Recruiter</span>
+                                <span className="from-primary to-accent bg-gradient-to-r bg-clip-text text-transparent">
+                                    Recruiter
+                                </span>
                             </motion.h1>
                             <motion.p
                                 variants={itemVariants}
-                                className="text-lg sm:text-xl text-muted-foreground max-w-2xl text-pretty leading-relaxed"
+                                className="text-muted-foreground max-w-2xl text-lg leading-relaxed text-pretty sm:text-xl"
                             >
-                                Upload your resume and get instant feedback, keyword match analysis, and improvement suggestions. See your
-                                resume through a recruiter&apos;s eyes and land more interviews.
+                                Upload your resume and get instant feedback, keyword match analysis,
+                                and improvement suggestions. See your resume through a
+                                recruiter&apos;s eyes and land more interviews.
                             </motion.p>
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+                        <motion.div
+                            variants={itemVariants}
+                            className="flex flex-col gap-4 sm:flex-row"
+                        >
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                }}
                             >
                                 <Button
                                     asChild
                                     size="lg"
-                                    className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group"
+                                    className="group relative w-full overflow-hidden rounded-2xl px-6 py-4 text-base shadow-lg transition-all duration-300 hover:shadow-xl sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
                                 >
-                                    <Link href="/roast" className="flex items-center justify-center">
+                                    <Link
+                                        href="/roast"
+                                        className="flex items-center justify-center"
+                                    >
                                         Try It Now
-                                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
                                     </Link>
                                 </Button>
                             </motion.div>
                         </motion.div>
                         <motion.div
                             variants={itemVariants}
-                            className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground"
+                            className="text-muted-foreground flex flex-col items-start space-y-3 text-sm sm:flex-row sm:items-center sm:space-y-0 sm:space-x-8"
                         >
                             <motion.div
                                 className="flex items-center space-x-2"
                                 whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                }}
                             >
-                                <Zap className="h-4 w-4 text-primary" />
+                                <Zap className="text-primary h-4 w-4" />
                                 <span>Instant Analysis</span>
                             </motion.div>
                             <motion.div
                                 className="flex items-center space-x-2"
                                 whileHover={{ scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 400,
+                                    damping: 17,
+                                }}
                             >
-                                <TrendingUp className="h-4 w-4 text-accent" />
+                                <TrendingUp className="text-accent h-4 w-4" />
                                 <span>AI-Powered Insights</span>
                             </motion.div>
                         </motion.div>
                     </div>
 
                     {/* Right side - Visual */}
-                    <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
+                    <div className="mt-8 flex justify-center lg:mt-0 lg:justify-end">
                         <motion.div variants={cardVariants} className="relative">
                             {/* Main Resume Analysis Card */}
                             <motion.div
                                 variants={floatingVariants}
                                 animate="animate"
-                                className="relative z-10 rounded-3xl bg-gradient-to-br from-card via-card to-card/80 p-8 sm:p-10 shadow-2xl border border-border/50 max-w-md w-full backdrop-blur-sm"
+                                className="from-card via-card to-card/80 border-border/50 relative z-10 w-full max-w-md rounded-3xl border bg-gradient-to-br p-8 shadow-2xl backdrop-blur-sm sm:p-10"
                             >
                                 {/* Header */}
-                                <div className="flex items-center justify-between mb-6">
+                                <div className="mb-6 flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="h-10 w-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-                                            <Zap className="h-5 w-5 text-primary-foreground" />
+                                        <div className="from-primary to-accent flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br">
+                                            <Zap className="text-primary-foreground h-5 w-5" />
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-foreground">Resume Analysis</h3>
-                                            <p className="text-xs text-muted-foreground">john-doe-resume.pdf</p>
+                                            <h3 className="text-foreground font-semibold">
+                                                Resume Analysis
+                                            </h3>
+                                            <p className="text-muted-foreground text-xs">
+                                                john-doe-resume.pdf
+                                            </p>
                                         </div>
                                     </div>
                                     <motion.div
-                                        className="h-12 w-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                                        className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-sm font-bold text-white shadow-lg"
                                         animate={{ scale: [1, 1.1, 1] }}
-                                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Number.POSITIVE_INFINITY,
+                                        }}
                                     >
                                         87
                                     </motion.div>
                                 </div>
 
                                 {/* Resume Sections */}
-                                <div className="space-y-4 mb-6">
+                                <div className="mb-6 space-y-4">
                                     <div className="space-y-3">
                                         <div className="flex items-center justify-between">
                                             <span className="text-sm font-medium">Experience</span>
                                             <div className="flex items-center space-x-2">
-                                                <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                                                <div className="bg-muted h-2 w-16 overflow-hidden rounded-full">
                                                     <motion.div
-                                                        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
+                                                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
                                                         initial={{ width: 0 }}
                                                         animate={{ width: "90%" }}
-                                                        transition={{ duration: 1.5, delay: 0.5 }}
+                                                        transition={{
+                                                            duration: 1.5,
+                                                            delay: 0.5,
+                                                        }}
                                                     ></motion.div>
                                                 </div>
-                                                <span className="text-xs font-semibold text-blue-600">90</span>
+                                                <span className="text-xs font-semibold text-blue-600">
+                                                    90
+                                                </span>
                                             </div>
                                         </div>
 
                                         <div className="flex items-center justify-between">
                                             <span className="text-sm font-medium">Skills</span>
                                             <div className="flex items-center space-x-2">
-                                                <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                                                <div className="bg-muted h-2 w-16 overflow-hidden rounded-full">
                                                     <motion.div
-                                                        className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"
+                                                        className="h-full rounded-full bg-gradient-to-r from-green-500 to-green-600"
                                                         initial={{ width: 0 }}
                                                         animate={{ width: "85%" }}
-                                                        transition={{ duration: 1.5, delay: 0.7 }}
+                                                        transition={{
+                                                            duration: 1.5,
+                                                            delay: 0.7,
+                                                        }}
                                                     ></motion.div>
                                                 </div>
-                                                <span className="text-xs font-semibold text-green-600">85</span>
+                                                <span className="text-xs font-semibold text-green-600">
+                                                    85
+                                                </span>
                                             </div>
                                         </div>
 
                                         <div className="flex items-center justify-between">
                                             <span className="text-sm font-medium">Education</span>
                                             <div className="flex items-center space-x-2">
-                                                <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                                                <div className="bg-muted h-2 w-16 overflow-hidden rounded-full">
                                                     <motion.div
-                                                        className="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"
+                                                        className="h-full rounded-full bg-gradient-to-r from-purple-500 to-purple-600"
                                                         initial={{ width: 0 }}
                                                         animate={{ width: "95%" }}
-                                                        transition={{ duration: 1.5, delay: 0.9 }}
+                                                        transition={{
+                                                            duration: 1.5,
+                                                            delay: 0.9,
+                                                        }}
                                                     ></motion.div>
                                                 </div>
-                                                <span className="text-xs font-semibold text-purple-600">95</span>
+                                                <span className="text-xs font-semibold text-purple-600">
+                                                    95
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -204,10 +246,12 @@ export function HeroSection() {
 
                                 {/* Keywords Section */}
                                 <div className="mb-6">
-                                    <h4 className="text-sm font-semibold mb-3 text-foreground">Top Keywords Found</h4>
+                                    <h4 className="text-foreground mb-3 text-sm font-semibold">
+                                        Top Keywords Found
+                                    </h4>
                                     <div className="flex flex-wrap gap-2">
                                         <motion.div
-                                            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                                            className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-medium"
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: 1.2 }}
@@ -216,7 +260,7 @@ export function HeroSection() {
                                             React
                                         </motion.div>
                                         <motion.div
-                                            className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium"
+                                            className="bg-accent/10 text-accent rounded-full px-3 py-1 text-xs font-medium"
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: 1.4 }}
@@ -225,7 +269,7 @@ export function HeroSection() {
                                             TypeScript
                                         </motion.div>
                                         <motion.div
-                                            className="px-3 py-1 bg-orange-500/10 text-orange-600 rounded-full text-xs font-medium"
+                                            className="rounded-full bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-600"
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: 1.6 }}
@@ -238,40 +282,54 @@ export function HeroSection() {
 
                                 {/* Roast Preview */}
                                 <motion.div
-                                    className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 rounded-xl p-4 border border-orange-200/50 dark:border-orange-800/50"
+                                    className="rounded-xl border border-orange-200/50 bg-gradient-to-r from-orange-50 to-red-50 p-4 dark:border-orange-800/50 dark:from-orange-950/20 dark:to-red-950/20"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 1.8 }}
                                 >
-                                    <div className="flex items-center space-x-2 mb-2">
+                                    <div className="mb-2 flex items-center space-x-2">
                                         <span className="text-lg">🔥</span>
-                                        <span className="text-sm font-semibold text-orange-600">Resume Roast</span>
+                                        <span className="text-sm font-semibold text-orange-600">
+                                            Resume Roast
+                                        </span>
                                     </div>
-                                    <p className="text-xs text-muted-foreground italic">
-                                        &ldquo;Your experience section is solid, but your skills could use more quantifiable
-                                        achievements...&rdquo;
+                                    <p className="text-muted-foreground text-xs italic">
+                                        &ldquo;Your experience section is solid, but your skills
+                                        could use more quantifiable achievements...&rdquo;
                                     </p>
                                 </motion.div>
                             </motion.div>
 
                             {/* Floating Elements */}
                             <motion.div
-                                className="absolute -top-6 -right-6 h-20 w-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl"
+                                className="from-primary/20 to-accent/20 absolute -top-6 -right-6 h-20 w-20 rounded-full bg-gradient-to-br blur-xl"
                                 animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-                                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                                transition={{
+                                    duration: 20,
+                                    repeat: Number.POSITIVE_INFINITY,
+                                    ease: "linear",
+                                }}
                             ></motion.div>
                             <motion.div
-                                className="absolute -bottom-6 -left-6 h-16 w-16 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full blur-xl"
+                                className="from-accent/20 to-primary/20 absolute -bottom-6 -left-6 h-16 w-16 rounded-full bg-gradient-to-br blur-xl"
                                 animate={{ rotate: -360, scale: [1, 0.9, 1] }}
-                                transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                                transition={{
+                                    duration: 15,
+                                    repeat: Number.POSITIVE_INFINITY,
+                                    ease: "linear",
+                                }}
                             ></motion.div>
 
                             {/* Success Badge */}
                             <motion.div
-                                className="absolute -top-3 -left-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg"
+                                className="absolute -top-3 -left-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-3 py-1 text-xs font-semibold text-white shadow-lg"
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
-                                transition={{ delay: 2, type: "spring", stiffness: 200 }}
+                                transition={{
+                                    delay: 2,
+                                    type: "spring",
+                                    stiffness: 200,
+                                }}
                             >
                                 ✓ Analyzed
                             </motion.div>
