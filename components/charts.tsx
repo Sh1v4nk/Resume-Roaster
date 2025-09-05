@@ -158,35 +158,22 @@ export function SectionsBarChart({ data }: SectionsBarChartProps) {
     }));
 
     // Custom tick component that properly inherits theme colors
-    const CustomXAxisTick = (props: any) => {
+    const CustomXAxisTick = (props: { x: number; y: number; payload: { value: string } }) => {
         const { x, y, payload } = props;
         return (
             <g transform={`translate(${x},${y})`}>
-                <text 
-                    x={0} 
-                    y={0} 
-                    dy={16} 
-                    textAnchor="end" 
-                    className="fill-foreground text-xs"
-                    transform="rotate(-45)"
-                >
+                <text x={0} y={0} dy={16} textAnchor="end" className="fill-foreground text-xs" transform="rotate(-45)">
                     {payload.value}
                 </text>
             </g>
         );
     };
 
-    const CustomYAxisTick = (props: any) => {
+    const CustomYAxisTick = (props: { x: number; y: number; payload: { value: number } }) => {
         const { x, y, payload } = props;
         return (
             <g transform={`translate(${x},${y})`}>
-                <text 
-                    x={0} 
-                    y={0} 
-                    dy={3} 
-                    textAnchor="end" 
-                    className="fill-foreground text-xs"
-                >
+                <text x={0} y={0} dy={3} textAnchor="end" className="fill-foreground text-xs">
                     {payload.value}
                 </text>
             </g>
@@ -197,21 +184,33 @@ export function SectionsBarChart({ data }: SectionsBarChartProps) {
         <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-4 border border-border/50">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }} barCategoryGap="20%">
-                    <CartesianGrid 
-                        strokeDasharray="3 3" 
-                        className="opacity-30" 
-                        stroke="hsl(var(--muted-foreground))" 
-                    />
+                    <CartesianGrid strokeDasharray="3 3" className="opacity-30" stroke="hsl(var(--muted-foreground))" />
                     <XAxis
                         dataKey="name"
-                        tick={<CustomXAxisTick />}
+                        tick={
+                            <CustomXAxisTick
+                                x={0}
+                                y={0}
+                                payload={{
+                                    value: "",
+                                }}
+                            />
+                        }
                         interval={0}
                         height={80}
                         axisLine={{ stroke: "hsl(var(--border))" }}
                         tickLine={{ stroke: "hsl(var(--border))" }}
                     />
-                    <YAxis 
-                        tick={<CustomYAxisTick />}
+                    <YAxis
+                        tick={
+                            <CustomYAxisTick
+                                x={0}
+                                y={0}
+                                payload={{
+                                    value: 0,
+                                }}
+                            />
+                        }
                         axisLine={{ stroke: "hsl(var(--border))" }}
                         tickLine={{ stroke: "hsl(var(--border))" }}
                     />
@@ -224,8 +223,8 @@ export function SectionsBarChart({ data }: SectionsBarChartProps) {
                                         <p className="font-semibold text-lg text-card-foreground">{data?.fullName}</p>
                                         <div className="space-y-2 mt-3">
                                             <div className="flex items-center gap-2">
-                                                <div 
-                                                    className="w-3 h-3 rounded-full" 
+                                                <div
+                                                    className="w-3 h-3 rounded-full"
                                                     style={{ backgroundColor: payload[0]?.color || vibrantColors[0] }}
                                                 ></div>
                                                 <p className="text-sm text-muted-foreground">
@@ -233,12 +232,13 @@ export function SectionsBarChart({ data }: SectionsBarChartProps) {
                                                 </p>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div 
-                                                    className="w-3 h-3 rounded-full" 
+                                                <div
+                                                    className="w-3 h-3 rounded-full"
                                                     style={{ backgroundColor: payload[1]?.color || vibrantColors[1] }}
                                                 ></div>
                                                 <p className="text-sm text-muted-foreground">
-                                                    <span className="font-medium text-card-foreground">Completeness:</span> {payload[1]?.value}%
+                                                    <span className="font-medium text-card-foreground">Completeness:</span>{" "}
+                                                    {payload[1]?.value}%
                                                 </p>
                                             </div>
                                         </div>
@@ -340,7 +340,8 @@ export function KeywordCoverageChart({ data }: KeywordCoverageChartProps) {
                                                 <span className="font-medium text-card-foreground">Count:</span> {data.count} keywords
                                             </p>
                                             <p className="text-sm text-muted-foreground">
-                                                <span className="font-medium text-card-foreground">Percentage:</span> {data.value.toFixed(1)}%
+                                                <span className="font-medium text-card-foreground">Percentage:</span>{" "}
+                                                {data.value.toFixed(1)}%
                                             </p>
                                         </div>
                                     </div>
@@ -350,13 +351,7 @@ export function KeywordCoverageChart({ data }: KeywordCoverageChartProps) {
                         }}
                     />
                     {/* Center text with theme-aware colors */}
-                    <text 
-                        x="50%" 
-                        y="42%" 
-                        textAnchor="middle" 
-                        dominantBaseline="middle" 
-                        className="text-3xl font-bold fill-foreground"
-                    >
+                    <text x="50%" y="42%" textAnchor="middle" dominantBaseline="middle" className="text-3xl font-bold fill-foreground">
                         {total}
                     </text>
                     <text

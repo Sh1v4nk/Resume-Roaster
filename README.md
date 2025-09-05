@@ -1,134 +1,290 @@
 <div align="center">
 
-# Resume-Roaster
+# Resume Roaster
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.25-black)](https://nextjs.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.9-38B2AC)](https://tailwindcss.com/)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-AI-orange)](https://ai.google.dev/)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-![GitHub repo size](https://img.shields.io/github/repo-size/Sh1v4nk/Resume-Roaster)
 
-Resume-Roaster is a web application that provides a humorous and brutally honest critique of resumes. The application allows users to upload their resume in PDF format, and it uses AI to generate a roast of the resume content. The roast is designed to be entertaining and exaggerated, highlighting flaws and poking fun at every aspect of the resume.
+**AI-Powered Resume Analysis & Critique Tool**
+
+Get instant, humorous feedback on your resume with detailed analysis, scoring, and improvement suggestions. See your resume through a recruiter's eyes!
+
+[Live Demo](https://resume-roaster.vercel.app) | [Features](#features) | [Tech Stack](#tech-stack)
 
 </div>
+
+---
 
 ## Table of Contents
 
 -   [Features](#features)
+    -   [Core Features](#core-features)
+    -   [Analysis Features](#analysis-features)
+    -   [Unique Features](#unique-features)
 -   [Tech Stack](#tech-stack)
-    -   [Backend](#backend)
-    -   [Frontend](#frontend)
--   [Getting Started](#getting-started)
-    -   [Installation](#installation)
-        -   [Clone the repository](#1-clone-the-repository)
-        -   [Install dependencies](#2-install-dependencies)
-            -   [Backend](#backend-1)
-            -   [Frontend](#frontend-1)
-        -   [Set up environment variables](#3-set-up-environment-variables)
+    -   [Framework & Language](#framework--language)
+    -   [Frontend & Styling](#frontend--styling)
+    -   [Backend & AI](#backend--ai)
+    -   [UI Components & Forms](#ui-components--forms)
+    -   [Export & Utilities](#export--utilities)
+-   [Installation](#installation)
+    -   [Prerequisites](#prerequisites)
+    -   [Quick Start](#quick-start)
+-   [Configuration](#configuration)
+    -   [Environment Variables](#environment-variables)
+    -   [Build Commands](#build-commands)
+-   [Project Structure](#project-structure)
 -   [Contributing](#contributing)
+    -   [Development Setup](#development-setup)
+    -   [Guidelines](#guidelines)
 -   [License](#license)
+-   [Acknowledgments](#acknowledgments)
+-   [Contact](#contact)
+
+---
 
 ## Features
 
--   **Resume Upload**: Users can upload their resume in PDF format.
--   **AI-Powered Roast**: The application uses AI to generate a savage and entertaining roast of the resume content.
--   **Real-Time Feedback**: The roast is displayed in real-time, providing immediate feedback to the user.
+### Core Features
+
+-   **Multi-Format Upload** - Support for PDF and DOCX formats
+-   **Google Gemini AI** - Advanced AI-powered resume analysis
+-   **Comprehensive Scoring** - Detailed evaluation metrics and insights
+-   **Interactive Charts** - Visual representation of resume health
+-   **Dark Mode** - Beautiful theme switching with system preference detection
+-   **Fully Responsive** - Works perfectly on all devices
+
+### Analysis Features
+
+-   **Keyword Matching** - Compare against job descriptions
+-   **Section Completeness** - Evaluate resume structure and content
+-   **Content Quality** - AI-powered writing feedback and suggestions
+-   **Formatting Analysis** - Visual and structural assessment
+-   **Recruiter Perspective** - See your resume as hiring managers do
+
+### Unique Features
+
+-   **Humorous Critique** - Entertaining roast-style feedback
+-   **PDF Export** - Download your analysis report
+-   **Real-time Processing** - Instant results with progress tracking
+-   **Theme Adaptation** - Charts and UI adapt to light/dark themes
+
+---
 
 ## Tech Stack
 
-### Backend:
+### Framework & Language
 
--   TypeScript
--   Express.js
+-   **Framework:** [Next.js 14](https://nextjs.com/) - React framework with App Router
+-   **Language:** [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+-   **Runtime:** [Bun](https://bun.sh/) - Fast JavaScript runtime & package manager
 
-### Frontend:
+### Frontend & Styling
 
--   React.js
--   Tailwind CSS
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/) - Production-ready animations
+-   **Icons:** [Lucide React](https://lucide.dev/) - Beautiful & consistent icon set
+-   **Charts:** [Recharts](https://recharts.org/) - Composable charting library
+-   **Themes:** [next-themes](https://github.com/pacocoursey/next-themes) - Theme switching
+
+### Backend & AI
+
+-   **AI Engine:** [Google Gemini](https://ai.google.dev/) - Advanced AI for resume analysis
+-   **File Processing:**
+    -   [PDF.js](https://mozilla.github.io/pdf.js/) - PDF parsing
+    -   [Mammoth](https://github.com/moxystudio/node-mammoth) - DOCX processing
+-   **API:** Next.js API Routes - Serverless backend functions
+
+### UI Components & Forms
+
+-   **Component Library:** [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
+-   **Form Handling:** [React Hook Form](https://react-hook-form.com/) - Performant forms
+-   **Validation:** [Zod](https://zod.dev/) - TypeScript-first schema validation
+-   **File Upload:** [React Dropzone](https://react-dropzone.js.org/) - Drag & drop file uploads
+-   **Notifications:** [Sonner](https://sonner.emilkowal.ski/) - Toast notifications
+
+### Export & Utilities
+
+-   **PDF Export:** [jsPDF](https://github.com/parallax/jsPDF) & [html2canvas](https://html2canvas.hertzen.com/) - Report generation
+-   **Utilities:** [clsx](https://github.com/lukeed/clsx) & [tailwind-merge](https://github.com/dcastil/tailwind-merge) - Class management
+-   **Styling:** [class-variance-authority](https://cva.style/) - Component variants
 
 ---
 
-## Getting Started
+## Installation
 
-Follow these steps to get the project up and running on your local machine:
+### Prerequisites
+
+-   **Node.js** 18+ or **Bun** (recommended)
+-   **Git** for cloning the repository
+
+### Quick Start
+
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/Sh1v4nk/Resume-Roaster.git
+    cd Resume-Roaster
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    # Using Bun (recommended)
+    bun install
+
+    # Or using npm
+    npm install
+
+    # Or using yarn
+    yarn install
+    ```
+
+3. **Set up environment variables**
+
+    Create a `.env.local` file in the root directory:
+
+    ```env
+    GOOGLE_AI_API_KEY=your_google_ai_api_key_here
+    ```
+
+    > **Get your Google AI API key:**
+    >
+    > 1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+    > 2. Create a new API key
+    > 3. Copy the key to your `.env.local` file
+
+4. **Run the development server**
+
+    ```bash
+    # Using Bun
+    bun dev
+
+    # Or using npm
+    npm run dev
+
+    # Or using yarn
+    yarn dev
+    ```
+
+5. **Open your browser**
+
+    Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
 
 ---
 
-### Installation
+## Configuration
 
-#### 1. Clone the repository:
+### Environment Variables
 
-```bash
-git clone https://github.com/Sh1v4nk/Resume-Roaster
+| Variable            | Description                           | Required |
+| ------------------- | ------------------------------------- | -------- |
+| `GOOGLE_AI_API_KEY` | Google Gemini API key for AI analysis | ✅ Yes   |
 
-cd Resume-Roaster
-```
-
-#### 2. Install dependencies:
-
-Navigate to the respective directories and install the required dependencies:
-
-##### Backend:
+### Build Commands
 
 ```bash
-cd backend
+# Development
+bun dev
 
-bun install
+# Production build
+bun run build
+
+# Start production server
+bun start
+
+# Lint code
+bun run lint
 ```
 
-##### Frontend:
+---
 
-```bash
-cd ../frontend
+## Project Structure
 
-bun install
 ```
-
-#### 3. Set up environment variables:
-
-Refer to the `.env.example` file in the `/backend` or `/fronted` directory for the required environment variables. Copy the file and rename it to `.env` in the respecitve folder, then populate the values as needed.
-
-Bun will automatically load these environment variables during runtime.
-
-##### References:
-
--   [Backend .env.example](https://github.com/Sh1v4nk/Resume-Roaster/blob/main/backend/.env.example)
-
--   [Frontend .env.example](https://github.com/Sh1v4nk/Resume-Roaster/blob/main/frontend/.env.example)
+Resume-Roaster/
+├── app/                    # Next.js app directory
+│   ├── api/               # API routes
+│   │   ├── analyze/       # Analysis endpoint
+│   │   ├── health/        # Health check endpoint
+│   │   └── roast/         # Resume roast endpoint
+│   ├── globals.css        # Global styles & theme variables
+│   ├── layout.tsx         # Root layout component
+│   ├── page.tsx           # Home page
+│   └── roast/             # Roast page route
+├── components/            # React components
+│   ├── ui/               # Reusable UI components
+│   ├── charts.tsx        # Chart components
+│   ├── file-upload.tsx   # File upload component
+│   ├── hero-section.tsx  # Hero section
+│   ├── navbar.tsx        # Navigation component
+│   ├── results-display.tsx # Results display
+│   └── ...
+├── lib/                  # Utility functions
+│   └── utils.ts          # Helper functions
+└── public/               # Static assets
+```
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
+We welcome contributions! Here's how you can help:
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/FeatureName`)
-3. Commit your Changes (`git commit -m 'Add some FeatureName'`)
-4. Push to the Branch (`git push origin feature/FeatureName`)
-5. Open a Pull Request
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes
+4. Test thoroughly
+5. Commit your changes: `git commit -m 'Add amazing feature'`
+6. Push to the branch: `git push origin feature/amazing-feature`
+7. Open a Pull Request
+
+### Guidelines
+
+-   Follow the existing code style
+-   Add tests for new features
+-   Update documentation as needed
+-   Ensure all tests pass
+-   Keep PRs focused on a single feature
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Sh1v4nk/Resume-Roaster/blob/main/LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-Thank you for visiting my Resume-Roaster repository. If you have any suggestions or feedback, feel free to reach out to me.
+## Acknowledgments
 
-Connect with me:
+-   **Google Gemini** for powering the AI analysis
+-   **Vercel** for hosting and deployment
+-   **Radix UI** for accessible component primitives
+-   **Tailwind CSS** for the styling system
+-   **Framer Motion** for smooth animations
+
+---
+
+## Contact
+
+**Shivank Pandey**
+
+-   **Email:** shivankpandey113@gmail.com
+-   **Twitter:** [@sh1v4nk](https://twitter.com/sh1v4nk)
+-   **LinkedIn:** [Shivank Pandey](https://www.linkedin.com/in/sh1v4nk/)
+-   **Discord:** sh1v4nk#1137
+
+---
 
 <div align="center">
-  <a href="mailto:shivankpandey113@gmail.com" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Gmail&logo=gmail&label=&color=D14836&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="gmail logo"  />
-  </a>
-  <a href="https://twitter.com/sh1v4nk" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Twitter&logo=twitter&label=&color=1DA1F2&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="twitter logo"  />
-  </a>
-    <a href="https://www.linkedin.com/in/sh1v4nk/" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="linkedin logo"  />
-  </a>
-  <a href="https://discord.com/users/571299781096505344" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="discord logo"  />
-  </a>
+
+**Made with ❤️ by Shivank Pandey**
+
+[⭐ Star this repo](https://github.com/Sh1v4nk/Resume-Roaster) if you found it helpful!
+
 </div>
