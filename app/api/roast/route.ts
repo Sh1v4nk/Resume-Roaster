@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import pdf from "pdf-parse";
 import mammoth from "mammoth";
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 
@@ -69,6 +68,7 @@ async function extractTextFromFile(file: File): Promise<string> {
     const buffer = await file.arrayBuffer();
 
     if (file.type === "application/pdf") {
+        const pdf = (await import("pdf-parse")).default;
         const data = await pdf(Buffer.from(buffer));
         return data.text;
     } else if (
