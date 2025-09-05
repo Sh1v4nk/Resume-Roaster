@@ -20,18 +20,18 @@ interface SectionsPieChartProps {
 }
 
 export function SectionsPieChart({ data }: SectionsPieChartProps) {
-    // Vibrant color palette matching the UI design
+    // Theme-adaptive vibrant color palette
     const vibrantColors = [
-        "#FF6B6B", // Red
-        "#4ECDC4", // Teal
-        "#45B7D1", // Blue
-        "#FFA07A", // Light Salmon
-        "#98D8C8", // Mint
-        "#F7DC6F", // Yellow
-        "#BB8FCE", // Light Purple
-        "#85C1E9", // Light Blue
-        "#F8C471", // Orange
-        "#82E0AA", // Light Green
+        "#ef4444", // Red-500
+        "#06b6d4", // Cyan-500
+        "#3b82f6", // Blue-500
+        "#f97316", // Orange-500
+        "#10b981", // Emerald-500
+        "#eab308", // Yellow-500
+        "#a855f7", // Purple-500
+        "#ec4899", // Pink-500
+        "#84cc16", // Lime-500
+        "#14b8a6", // Teal-500
     ];
 
     const chartData = data.map((section, index) => ({
@@ -76,7 +76,7 @@ export function SectionsPieChart({ data }: SectionsPieChartProps) {
     };
 
     return (
-        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-4">
+        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-4 border border-border/50">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
@@ -108,14 +108,14 @@ export function SectionsPieChart({ data }: SectionsPieChartProps) {
                             if (active && payload && payload.length) {
                                 const data = payload[0].payload;
                                 return (
-                                    <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 shadow-xl">
-                                        <p className="font-semibold text-lg">{data.name}</p>
+                                    <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg p-4 shadow-xl">
+                                        <p className="font-semibold text-lg text-card-foreground">{data.name}</p>
                                         <div className="space-y-1 mt-2">
-                                            <p className="text-sm">
-                                                <span className="font-medium">Completeness:</span> {data.value}%
+                                            <p className="text-sm text-muted-foreground">
+                                                <span className="font-medium text-card-foreground">Completeness:</span> {data.value}%
                                             </p>
-                                            <p className="text-sm">
-                                                <span className="font-medium">Score:</span> {data.score}/100
+                                            <p className="text-sm text-muted-foreground">
+                                                <span className="font-medium text-card-foreground">Score:</span> {data.score}/100
                                             </p>
                                         </div>
                                     </div>
@@ -135,18 +135,18 @@ interface SectionsBarChartProps {
 }
 
 export function SectionsBarChart({ data }: SectionsBarChartProps) {
-    // Vibrant color palette matching the UI design
+    // Theme-adaptive vibrant color palette
     const vibrantColors = [
-        "#FF6B6B", // Red
-        "#4ECDC4", // Teal
-        "#45B7D1", // Blue
-        "#FFA07A", // Light Salmon
-        "#98D8C8", // Mint
-        "#F7DC6F", // Yellow
-        "#BB8FCE", // Light Purple
-        "#85C1E9", // Light Blue
-        "#F8C471", // Orange
-        "#82E0AA", // Light Green
+        "#ef4444", // Red-500
+        "#06b6d4", // Cyan-500
+        "#3b82f6", // Blue-500
+        "#f97316", // Orange-500
+        "#10b981", // Emerald-500
+        "#eab308", // Yellow-500
+        "#a855f7", // Purple-500
+        "#ec4899", // Pink-500
+        "#84cc16", // Lime-500
+        "#14b8a6", // Teal-500
     ];
 
     const chartData = data.map((section, index) => ({
@@ -157,39 +157,88 @@ export function SectionsBarChart({ data }: SectionsBarChartProps) {
         color: vibrantColors[index % vibrantColors.length],
     }));
 
+    // Custom tick component that properly inherits theme colors
+    const CustomXAxisTick = (props: any) => {
+        const { x, y, payload } = props;
+        return (
+            <g transform={`translate(${x},${y})`}>
+                <text 
+                    x={0} 
+                    y={0} 
+                    dy={16} 
+                    textAnchor="end" 
+                    className="fill-foreground text-xs"
+                    transform="rotate(-45)"
+                >
+                    {payload.value}
+                </text>
+            </g>
+        );
+    };
+
+    const CustomYAxisTick = (props: any) => {
+        const { x, y, payload } = props;
+        return (
+            <g transform={`translate(${x},${y})`}>
+                <text 
+                    x={0} 
+                    y={0} 
+                    dy={3} 
+                    textAnchor="end" 
+                    className="fill-foreground text-xs"
+                >
+                    {payload.value}
+                </text>
+            </g>
+        );
+    };
+
     return (
-        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-4">
+        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-4 border border-border/50">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }} barCategoryGap="20%">
-                    <CartesianGrid strokeDasharray="3 3" className="opacity-30" stroke="hsl(var(--muted-foreground))" />
+                    <CartesianGrid 
+                        strokeDasharray="3 3" 
+                        className="opacity-30" 
+                        stroke="hsl(var(--muted-foreground))" 
+                    />
                     <XAxis
                         dataKey="name"
-                        tick={{ fontSize: 11, fill: "hsl(var(--foreground))" }}
+                        tick={<CustomXAxisTick />}
                         interval={0}
-                        angle={-45}
-                        textAnchor="end"
                         height={80}
                         axisLine={{ stroke: "hsl(var(--border))" }}
+                        tickLine={{ stroke: "hsl(var(--border))" }}
                     />
-                    <YAxis tick={{ fontSize: 11, fill: "hsl(var(--foreground))" }} axisLine={{ stroke: "hsl(var(--border))" }} />
+                    <YAxis 
+                        tick={<CustomYAxisTick />}
+                        axisLine={{ stroke: "hsl(var(--border))" }}
+                        tickLine={{ stroke: "hsl(var(--border))" }}
+                    />
                     <Tooltip
                         content={({ active, payload, label }) => {
                             if (active && payload && payload.length) {
                                 const data = chartData.find((item) => item.name === label);
                                 return (
-                                    <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 shadow-xl">
-                                        <p className="font-semibold text-lg">{data?.fullName}</p>
+                                    <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg p-4 shadow-xl">
+                                        <p className="font-semibold text-lg text-card-foreground">{data?.fullName}</p>
                                         <div className="space-y-2 mt-3">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-3 h-3 rounded-full bg-primary"></div>
-                                                <p className="text-sm">
-                                                    <span className="font-medium">Score:</span> {payload[0]?.value}/100
+                                                <div 
+                                                    className="w-3 h-3 rounded-full" 
+                                                    style={{ backgroundColor: payload[0]?.color || vibrantColors[0] }}
+                                                ></div>
+                                                <p className="text-sm text-muted-foreground">
+                                                    <span className="font-medium text-card-foreground">Score:</span> {payload[0]?.value}/100
                                                 </p>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-3 h-3 rounded-full bg-accent"></div>
-                                                <p className="text-sm">
-                                                    <span className="font-medium">Completeness:</span> {payload[1]?.value}%
+                                                <div 
+                                                    className="w-3 h-3 rounded-full" 
+                                                    style={{ backgroundColor: payload[1]?.color || vibrantColors[1] }}
+                                                ></div>
+                                                <p className="text-sm text-muted-foreground">
+                                                    <span className="font-medium text-card-foreground">Completeness:</span> {payload[1]?.value}%
                                                 </p>
                                             </div>
                                         </div>
@@ -243,18 +292,18 @@ export function KeywordCoverageChart({ data }: KeywordCoverageChartProps) {
             name: "Found Keywords",
             value: foundPercentage,
             count: data.found.length,
-            fill: "#4ECDC4", // Teal
+            fill: "#10b981", // Emerald-500 - works well in both themes
         },
         {
             name: "Missing Keywords",
             value: missingPercentage,
             count: data.missing.length,
-            fill: "#FF6B6B", // Red
+            fill: "#ef4444", // Red-500 - works well in both themes
         },
     ];
 
     return (
-        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-6">
+        <div className="w-full h-80 bg-gradient-to-br from-background to-muted/20 rounded-lg p-6 border border-border/50">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
@@ -284,14 +333,14 @@ export function KeywordCoverageChart({ data }: KeywordCoverageChartProps) {
                             if (active && payload && payload.length) {
                                 const data = payload[0].payload;
                                 return (
-                                    <div className="bg-background/95 backdrop-blur-sm border rounded-lg p-6 shadow-xl">
-                                        <p className="font-semibold text-lg mb-3">{data.name}</p>
+                                    <div className="bg-card/95 backdrop-blur-sm border border-border rounded-lg p-6 shadow-xl">
+                                        <p className="font-semibold text-lg mb-3 text-card-foreground">{data.name}</p>
                                         <div className="space-y-2">
-                                            <p className="text-sm">
-                                                <span className="font-medium">Count:</span> {data.count} keywords
+                                            <p className="text-sm text-muted-foreground">
+                                                <span className="font-medium text-card-foreground">Count:</span> {data.count} keywords
                                             </p>
-                                            <p className="text-sm">
-                                                <span className="font-medium">Percentage:</span> {data.value.toFixed(1)}%
+                                            <p className="text-sm text-muted-foreground">
+                                                <span className="font-medium text-card-foreground">Percentage:</span> {data.value.toFixed(1)}%
                                             </p>
                                         </div>
                                     </div>
@@ -300,8 +349,14 @@ export function KeywordCoverageChart({ data }: KeywordCoverageChartProps) {
                             return null;
                         }}
                     />
-                    {/* Center text */}
-                    <text x="50%" y="42%" textAnchor="middle" dominantBaseline="middle" className="text-3xl font-bold fill-foreground">
+                    {/* Center text with theme-aware colors */}
+                    <text 
+                        x="50%" 
+                        y="42%" 
+                        textAnchor="middle" 
+                        dominantBaseline="middle" 
+                        className="text-3xl font-bold fill-foreground"
+                    >
                         {total}
                     </text>
                     <text
