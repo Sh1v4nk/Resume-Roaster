@@ -2,10 +2,9 @@
 const nextConfig = {
     webpack: (config, { isServer }) => {
         if (isServer) {
-            // Ignore pdf-parse test files during bundling
-            config.module.rules.push({
-                test: /pdf-parse/,
-                use: "ignore-loader",
+            // Exclude pdf-parse test files from the bundle
+            config.externals.push({
+                "pdf-parse": "commonjs pdf-parse",
             });
         }
         return config;
