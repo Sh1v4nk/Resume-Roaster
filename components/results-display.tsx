@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, AlertTriangle, XCircle, Download, BarChart3, Target, FileText, PieChart, Loader2 } from "lucide-react";
+import { CheckCircle, AlertTriangle, XCircle, Download, BarChart3, Target, FileText, PieChart, Loader2, ArrowRight } from "lucide-react";
 import { SectionsPieChart, SectionsBarChart, KeywordCoverageChart } from "@/components/charts";
 import { motion, AnimatePresence, easeOut } from "motion/react";
 import { toast } from "sonner";
@@ -34,9 +33,10 @@ interface ResultsDisplayProps {
         roast: string;
     };
     fileName: string;
+    onReset?: () => void;
 }
 
-export function ResultsDisplay({ results, fileName }: ResultsDisplayProps) {
+export function ResultsDisplay({ results, fileName, onReset }: ResultsDisplayProps) {
     const [activeTab, setActiveTab] = useState("overview");
     const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
@@ -608,25 +608,13 @@ export function ResultsDisplay({ results, fileName }: ResultsDisplayProps) {
                             >
                                 <Button
                                     variant="outline"
-                                    asChild
-                                    className="rounded-xl border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 w-full sm:w-auto"
+                                    onClick={onReset}
+                                    className="group rounded-xl border-2 border-primary/20 hover:border-primary/40 w-full sm:w-auto"
                                 >
-                                    <Link href="/roast">
-                                        <motion.div
-                                            className="flex items-center space-x-2"
-                                            whileHover={{ x: 2 }}
-                                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                        >
-                                            <span>📄</span>
-                                            <span>Analyze Another Resume</span>
-                                            <motion.div
-                                                animate={{ x: [0, 3, 0] }}
-                                                transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-                                            >
-                                                →
-                                            </motion.div>
-                                        </motion.div>
-                                    </Link>
+                                    <span className="flex items-center justify-center space-x-2 px-4 py-2">
+                                        <span className="font-medium">Analyze Another Resume</span>
+                                        <ArrowRight className="text-primary group-hover:translate-x-1 transition-transform duration-200 h-4 w-4" />
+                                    </span>
                                 </Button>
                             </motion.div>
                         </div>

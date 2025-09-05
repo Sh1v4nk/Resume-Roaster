@@ -1,69 +1,81 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin, Heart } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="bg-muted/50 border-t">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="space-y-4">
-                        <div className="flex items-center space-x-2">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
+        <footer className="relative bg-gradient-to-t from-muted/30 to-background border-t border-border/50">
+            {/* Decorative background elements */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5"></div>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+
+            <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div className="flex flex-col items-center space-y-6">
+                    {/* Brand Section */}
+                    <div className="text-center space-y-3">
+                        <div className="flex items-center justify-center space-x-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground font-bold text-lg shadow-lg">
                                 R
                             </div>
-                            <span className="font-bold text-xl">Resume Roaster</span>
+                            <span className="font-bold text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                                Resume Roaster
+                            </span>
                         </div>
-                        <p className="text-muted-foreground text-sm">AI-powered resume analysis to help you land your dream job.</p>
+                        <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed">
+                            AI-powered resume analysis to help you land your dream job
+                        </p>
                     </div>
 
-                    <div>
-                        <h3 className="font-semibold mb-4">Product</h3>
-                        <ul className="space-y-2 text-sm">
-                            <li>
-                                <Link href="/roast" className="text-muted-foreground hover:text-foreground transition-colors">
-                                    Resume Analysis
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
-                                    Dashboard
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/pricing" className="text-muted-foreground hover:text-foreground transition-colors">
-                                    Pricing
-                                </Link>
-                            </li>
-                        </ul>
+                    {/* Navigation Links */}
+                    <div className="flex flex-wrap justify-center gap-6 text-sm">
+                        <Link href="/roast" className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium">
+                            Analyze Resume
+                        </Link>
                     </div>
 
-                    <div>
-                        <h3 className="font-semibold mb-4">Connect</h3>
-                        <div className="flex space-x-4">
+                    {/* Social Links */}
+                    <div className="flex items-center space-x-1">
+                        <span className="text-muted-foreground text-sm mr-2">Follow us:</span>
+                        <div className="flex space-x-3">
                             <Link
-                                href="https://github.com/Sh1v4nk"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                href="https://github.com/Sh1v4nk/Resume-Roaster"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 hover:scale-105"
                             >
-                                <Github className="h-5 w-5" />
-                                <span className="sr-only">GitHub</span>
+                                <Github className="h-4 w-4" />
+                                <span className="sr-only">GitHub Repository</span>
                             </Link>
-                            <Link href="https://x.com/sh1v4nk" className="text-muted-foreground hover:text-foreground transition-colors">
-                                <Twitter className="h-5 w-5" />
+                            <Link
+                                href="https://x.com/sh1v4nk"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 hover:scale-105"
+                            >
+                                <Twitter className="h-4 w-4" />
                                 <span className="sr-only">Twitter</span>
                             </Link>
                             <Link
-                                href="https://linkedin.comhttps://www.linkedin.com/in/sh1v4nk/"
-                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                href="https://www.linkedin.com/in/sh1v4nk/"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 hover:scale-105"
                             >
-                                <Linkedin className="h-5 w-5" />
+                                <Linkedin className="h-4 w-4" />
                                 <span className="sr-only">LinkedIn</span>
                             </Link>
                         </div>
                     </div>
-                </div>
 
-                <div className="border-t mt-8 pt-8 text-center">
-                    <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} Resume Roaster. All rights reserved.</p>
+                    {/* Copyright */}
+                    <div className="flex items-center justify-center space-x-2 text-xs text-muted-foreground pt-4 border-t border-border/30 w-full max-w-md mx-auto">
+                        <span>© {new Date().getFullYear()} Resume Roaster</span>
+                        <span>•</span>
+                        <span className="flex items-center space-x-1">
+                            <span>Made with</span>
+                            <Heart className="h-3 w-3 text-red-500 fill-current" />
+                            <span>by</span>
+                            <Link
+                                href="https://github.com/Sh1v4nk"
+                                className="hover:text-primary transition-colors duration-200 font-medium"
+                            >
+                                Shivank
+                            </Link>
+                        </span>
+                    </div>
                 </div>
             </div>
         </footer>

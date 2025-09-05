@@ -91,16 +91,11 @@ export function HeroSection() {
                                 <Button
                                     asChild
                                     size="lg"
-                                    className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                                    className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group"
                                 >
-                                    <Link href="/roast">
+                                    <Link href="/roast" className="flex items-center justify-center">
                                         Try It Now
-                                        <motion.div
-                                            animate={{ x: [0, 5, 0] }}
-                                            transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-                                        >
-                                            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                                        </motion.div>
+                                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1" />
                                     </Link>
                                 </Button>
                             </motion.div>

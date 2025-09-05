@@ -6,7 +6,7 @@ import { ResultsDisplay } from "@/components/results-display";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, Zap } from "lucide-react";
+import { CheckCircle, Zap, Trash2 } from "lucide-react";
 
 interface UploadedFile {
     name: string;
@@ -49,22 +49,33 @@ export default function RoastPage() {
         setResults(null);
     };
 
+    const formatFileSize = (bytes: number) => {
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const sizes = ["Bytes", "KB", "MB", "GB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    };
+
     const handleAnalyze = async () => {
         if (!uploadedFile) return;
 
         setIsAnalyzing(true);
         setAnalysisProgress(0);
+        const startTime = Date.now();
 
-        // Simulate analysis progress
+        // Simulate analysis progress with more realistic timing
         const progressInterval = setInterval(() => {
             setAnalysisProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(progressInterval);
                     return 100;
                 }
-                return prev + 10;
+                // Slower, more variable increments for realism
+                const increment = Math.random() * 8 + 2; // 2-10 increment
+                return Math.min(prev + increment, 100);
             });
-        }, 200);
+        }, 400); // Slower interval
 
         try {
             const formData = new FormData();
@@ -83,7 +94,13 @@ export default function RoastPage() {
             const data = await response.json();
 
             if (data.success && data.data) {
-                setResults(data.data);
+                // Ensure minimum 3-second duration for better UX
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = Math.max(0, 3000 - elapsedTime);
+
+                setTimeout(() => {
+                    setResults(data.data);
+                }, remainingTime);
             } else {
                 throw new Error("Invalid response format");
             }
@@ -91,7 +108,7 @@ export default function RoastPage() {
             console.error("Analysis error:", error);
             // Fallback to mock data on error
             setResults({
-                score: 75,
+                score: 0,
                 feedback: [
                     {
                         type: "error" as const,
@@ -113,17 +130,15 @@ export default function RoastPage() {
                 roast: "Unable to generate roast at this time. Please try again later.",
             });
         } finally {
-            setIsAnalyzing(false);
-            clearInterval(progressInterval);
-        }
-    };
+            // Ensure minimum 3-second duration for better UX
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, 3000 - elapsedTime);
 
-    const formatFileSize = (bytes: number) => {
-        if (bytes === 0) return "0 Bytes";
-        const k = 1024;
-        const sizes = ["Bytes", "KB", "MB", "GB"];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+            setTimeout(() => {
+                setIsAnalyzing(false);
+                clearInterval(progressInterval);
+            }, remainingTime);
+        }
     };
 
     return (
@@ -171,8 +186,13 @@ export default function RoastPage() {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <Button onClick={() => setUploadedFile(null)} variant="ghost" size="sm">
-                                                Remove
+                                            <Button
+                                                onClick={() => setUploadedFile(null)}
+                                                variant="outline"
+                                                size="sm"
+                                                className="hover:bg-destructive/10 hover:text-destructive border-destructive/20 hover:border-destructive/40"
+                                            >
+                                                <Trash2 className="h-4 w-4" />
                                             </Button>
                                         </div>
                                     </div>
@@ -214,10 +234,12 @@ export default function RoastPage() {
                                             </div>
                                             <Progress value={analysisProgress} className="w-full" />
                                             <p className="text-sm text-muted-foreground">
-                                                {analysisProgress < 30 && "Parsing document structure..."}
-                                                {analysisProgress >= 30 && analysisProgress < 60 && "Analyzing content quality..."}
-                                                {analysisProgress >= 60 && analysisProgress < 90 && "Checking keyword optimization..."}
-                                                {analysisProgress >= 90 && "Generating insights..."}
+                                                {analysisProgress < 20 && "Reading document structure..."}
+                                                {analysisProgress >= 20 && analysisProgress < 40 && "Extracting text content..."}
+                                                {analysisProgress >= 40 && analysisProgress < 60 && "Analyzing resume sections..."}
+                                                {analysisProgress >= 60 && analysisProgress < 80 && "Evaluating content quality..."}
+                                                {analysisProgress >= 80 && analysisProgress < 95 && "Checking keyword optimization..."}
+                                                {analysisProgress >= 95 && "Generating personalized feedback..."}
                                             </p>
                                         </div>
                                     )}
@@ -226,7 +248,15 @@ export default function RoastPage() {
                         )}
                     </div>
                 ) : (
-                    <ResultsDisplay results={results} fileName={uploadedFile?.name || ""} />
+                    <ResultsDisplay
+                        results={results}
+                        fileName={uploadedFile?.name || ""}
+                        onReset={() => {
+                            setResults(null);
+                            setUploadedFile(null);
+                            setAnalysisProgress(0);
+                        }}
+                    />
                 )}
             </div>
         </div>

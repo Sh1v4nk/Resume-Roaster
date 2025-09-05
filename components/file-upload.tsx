@@ -124,7 +124,7 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
                             transition={{ delay: 0.2 }}
                         >
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Button variant="outline" className="w-full sm:w-auto bg-transparent hover:bg-muted/50">
+                                <Button variant="outline" className="w-full sm:w-auto">
                                     <FileText className="mr-2 h-4 w-4" />
                                     Choose File
                                 </Button>

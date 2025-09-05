@@ -79,25 +79,12 @@ export function Navbar() {
                                     Roast My Resume
                                 </Link>
                             </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link
-                                    href="/dashboard"
-                                    className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                                >
-                                    Dashboard
-                                </Link>
-                            </motion.div>
                         </div>
                     </div>
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center space-x-4">
                         <ModeToggle />
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Button variant="outline" asChild>
-                                <Link href="/login">Login</Link>
-                            </Button>
-                        </motion.div>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Button asChild>
                                 <Link href="/roast">Try It Now</Link>
@@ -142,19 +129,7 @@ export function Navbar() {
                         >
                             Roast My Resume
                         </Link>
-                        <Link
-                            href="/dashboard"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-muted-foreground hover:text-primary hover:bg-muted transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Dashboard
-                        </Link>
                         <div className="pt-4 flex flex-col space-y-2">
-                            <Button variant="outline" asChild className="w-full bg-transparent">
-                                <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                                    Login
-                                </Link>
-                            </Button>
                             <Button asChild className="w-full">
                                 <Link href="/roast" onClick={() => setIsMobileMenuOpen(false)}>
                                     Try It Now
