@@ -12,7 +12,7 @@
 
 Get instant, humorous feedback on your resume with detailed analysis, scoring, and improvement suggestions. See your resume through a recruiter's eyes!
 
-[Live Demo](https://resume-roaster.vercel.app) | [Features](#features) | [Tech Stack](#tech-stack)
+[Live Demo](https://roastmyresume.vercel.app) | [Features](#features) | [Tech Stack](#tech-stack)
 
 </div>
 
@@ -272,19 +272,22 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## Contact
 
-**Shivank Pandey**
+Thank you for visiting my Resume-Roaster repository ⭐ Star this repo if you found it helpful! If you have any suggestions or feedback, feel free to reach out to me.
 
--   **Email:** shivankpandey113@gmail.com
--   **Twitter:** [@sh1v4nk](https://twitter.com/sh1v4nk)
--   **LinkedIn:** [Shivank Pandey](https://www.linkedin.com/in/sh1v4nk/)
--   **Discord:** sh1v4nk#1137
-
----
+Connect with me:
 
 <div align="center">
-
-**Made with ❤️ by Shivank Pandey**
-
-[⭐ Star this repo](https://github.com/Sh1v4nk/Resume-Roaster) if you found it helpful!
-
+  <a href="mailto:shivankpandey113@gmail.com" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=Gmail&logo=gmail&label=&color=D14836&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="gmail logo"  />
+  </a>
+  <a href="https://twitter.com/sh1v4nk" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=Twitter&logo=twitter&label=&color=1DA1F2&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="twitter logo"  />
+  </a>
+    <a href="https://www.linkedin.com/in/sh1v4nk/" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="linkedin logo"  />
+  </a>
+  <a href="https://discord.com/users/571299781096505344" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="30" alt="discord logo"  />
+  </a>
 </div>
+
