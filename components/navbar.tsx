@@ -60,28 +60,6 @@ export function Navbar() {
                         </Link>
                     </motion.div>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-4">
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link
-                                    href="/"
-                                    className="text-foreground hover:text-primary rounded-md px-3 py-2 text-sm font-medium transition-colors"
-                                >
-                                    Home
-                                </Link>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link
-                                    href="/roast"
-                                    className="text-muted-foreground hover:text-primary rounded-md px-3 py-2 text-sm font-medium transition-colors"
-                                >
-                                    Roast My Resume
-                                </Link>
-                            </motion.div>
-                        </div>
-                    </div>
-
                     {/* Desktop Actions */}
                     <div className="hidden items-center space-x-4 md:flex">
                         <ModeToggle />
@@ -122,20 +100,6 @@ export function Navbar() {
                     className="overflow-hidden md:hidden"
                 >
                     <div className="space-y-1 border-t px-2 pt-2 pb-3">
-                        <Link
-                            href="/"
-                            className="text-foreground hover:text-primary hover:bg-muted block rounded-md px-3 py-2 text-base font-medium transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/roast"
-                            className="text-muted-foreground hover:text-primary hover:bg-muted block rounded-md px-3 py-2 text-base font-medium transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Roast My Resume
-                        </Link>
                         <div className="flex flex-col space-y-2 pt-4">
                             <Button asChild className="w-full">
                                 <Link href="/roast" onClick={() => setIsMobileMenuOpen(false)}>
